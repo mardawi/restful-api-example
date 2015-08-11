@@ -79,7 +79,8 @@ public class ServerManager {
                 String body = fields.getString("body");
                 String url = fields.getString("url");
                 String articleSource = fields.getString("source");
-                articles.add(new Article(title, image, body, url, articleSource));
+                String articleDate = fields.getString("upDate");
+                articles.add(new Article(title, image, body, url, articleSource,articleDate));
             }
             return articles;
         } catch (Exception ex) {

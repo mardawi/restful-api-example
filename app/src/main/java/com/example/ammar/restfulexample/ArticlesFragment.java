@@ -55,7 +55,9 @@ public class ArticlesFragment extends Fragment {
                 final Article article = mArticles.get(position);
                 final ImageView image = (ImageView) view.findViewById(R.id.imageView);
                 final TextView source = (TextView) view.findViewById(R.id.row_source_textview);
+                final TextView date = (TextView)view.findViewById(R.id.row_date_textview);
                 source.setText(article.articleSource);
+                date.setText(article.articleDate);
                 Picasso.with(getActivity()).load(article.imageUrl).fit().into(image);
                 return view;
             }
