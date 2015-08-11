@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,19 +27,21 @@ public class CategoriesFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View root = inflater.inflate(R.layout.fragment_main, container, false);
+
         final ListView lv = (ListView) root.findViewById(R.id.listview);
+
         mAdapter = new ArrayAdapter<>(getActivity(), R.layout.category_row, R.id.listview_row_textview, mCategories);
         lv.setAdapter(mAdapter);
+
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i = new Intent(getActivity(), MainActivity.class);
                 i.putExtra(MainActivity.EXTRA_TYPE, MainActivity.EXTRA_TYPE_ARTICLE);
                 i.putExtra(MainActivity.EXTRA_PK, mCategories.get(position).pk);
-                startActivity(i);
+                getActivity().startActivity(i);
             }
         });
         getCategories();
@@ -60,7 +63,9 @@ public class CategoriesFragment extends Fragment {
 
             @Override
             protected void onPostExecute(Void aVoid) {
-                mAdapter.notifyDataSetChanged();
+
+                if (isAdded())
+                    mAdapter.notifyDataSetChanged();
             }
         }.execute();
     }

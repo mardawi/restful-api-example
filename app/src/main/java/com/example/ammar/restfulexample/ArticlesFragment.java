@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
@@ -46,12 +47,15 @@ public class ArticlesFragment extends Fragment {
         }
 
         final ListView lv = (ListView) root.findViewById(R.id.listview);
-        mAdapter = new ArrayAdapter<Article>(getActivity(), R.layout.article_row, R.id.listview_row_textview, mArticles){
+        mAdapter = new ArrayAdapter<Article>(getActivity(), R.layout.article_row, R.id.row_title_textview, mArticles){
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
-                final Article article = mArticles.get(position);
                 final View view = super.getView(position, convertView, parent);
+
+                final Article article = mArticles.get(position);
                 final ImageView image = (ImageView) view.findViewById(R.id.imageView);
+                final TextView source = (TextView) view.findViewById(R.id.row_source_textview);
+                source.setText(article.articleSource);
                 Picasso.with(getActivity()).load(article.imageUrl).fit().into(image);
                 return view;
             }

@@ -11,12 +11,22 @@
         android:src="@mipmap/ic_launcher"/>
 
     <TextView
-        android:id="@+id/listview_row_textview"
+        android:id="@+id/row_title_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:gravity="center"
         />
+
+    <TextView
+        android:id="@+id/row_source_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        />
+
+
 
 
 

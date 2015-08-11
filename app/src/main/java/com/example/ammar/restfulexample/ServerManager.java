@@ -78,7 +78,8 @@ public class ServerManager {
                 String image = fields.getString("image");
                 String body = fields.getString("body");
                 String url = fields.getString("url");
-                articles.add(new Article(title, image, body, url));
+                String articleSource = fields.getString("source");
+                articles.add(new Article(title, image, body, url, articleSource));
             }
             return articles;
         } catch (Exception ex) {
